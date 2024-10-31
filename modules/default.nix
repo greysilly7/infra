@@ -1,0 +1,3 @@
+{
+  homix = import ./homix;
+}
