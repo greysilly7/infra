@@ -15,6 +15,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
+
+    # Build Inputs
     greysilly7-xyz = {
       url = "github:greysilly7/greysilly7.xyz";
       flake = false;

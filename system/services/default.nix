@@ -4,7 +4,7 @@
     ./caddy.nix
     ./cloudflared.nix
     ./docker.nix
-    # ./jankclient.nix
+    ./jankclient.nix
     ./openssh.nix
     ./pocbot.nix
     ./postgres.nix
