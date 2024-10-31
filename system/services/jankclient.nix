@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   # Fetch and build the JankClient source code from GitHub
-  jankClientPackage = pkgs.stdenv.mkDerivation rec {
+  jankClientPackage = pkgs.stdenv.mkDerivation {
     pname = "jankclient";
     version = "git";
 
@@ -8,7 +8,7 @@
       owner = "MathMan05";
       repo = "JankClient";
       rev = "main"; # Specify the desired commit or branch
-      sha256 = "sha256-EzRADfKD5YwCepMp6dz8IgZG7y5gXvJKQpHwPLm0GMI="; # Replace with the actual sha256
+      sha256 = "sha256-P5HsP7gisg4Dv7eg0ksw620O/HT24xRj1zA/vPtBT28="; #lib.fakeSha256;
     };
 
     buildInputs = [pkgs.bun pkgs.nodejs];

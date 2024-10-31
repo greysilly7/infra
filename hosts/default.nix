@@ -19,10 +19,9 @@
       # from nixos modules, so it's a little bit cleaner
       specialArgs = {
         inherit inputs;
-        theme = import ../theme;
         flake = self;
       };
     };
 in {
-  greypersonal = mkHost "greypersonal" "x86_64-linux";
+  greyserver = mkHost "greyserver" "x86_64-linux";
 }

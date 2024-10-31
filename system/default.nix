@@ -4,9 +4,8 @@
     ./disks
     ./boot
     ./fonts
-    ./audio
+    ./services
     ./users
-    ./wayland
     ./nix
     ./secrets
     # ./security

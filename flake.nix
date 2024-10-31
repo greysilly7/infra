@@ -15,6 +15,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
+    greysilly7-xyz = {
+      url = "github:greysilly7/greysilly7.xyz";
+      flake = false;
+    };
+    spacebarchat = {
+      url = "github:greysilly7/server/fastbar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    pocbot = {
+      url = "github:OpenPlayVerse/POCBot";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.cargo2nix.inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {

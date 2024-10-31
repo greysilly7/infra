@@ -11,14 +11,6 @@
         zsh = callPackage ./zsh {};
       }
       // (import ./misc-scripts {inherit pkgs;});
-    desktop = {
-      hyperland = callPackage ./hyprland {inherit theme;};
-      hyprlock = callPackage ./hyprlock {inherit theme;};
-      hyprpaper = callPackage ./hyprpaper {inherit theme;};
-      waybar = callPackage ./waybar {inherit theme;};
-      rofi = callPackage ./rofi {inherit theme;};
-      mako = callPackage ./mako {inherit theme;};
-    };
   };
 
   shell = pkgs.mkShell {
@@ -33,8 +25,6 @@
     imports = [
       ./packages.nix
       ./git
-      ./gtk
-      ./gaming
     ];
   };
 }
