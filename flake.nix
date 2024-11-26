@@ -1,5 +1,5 @@
 {
-  description = "";
+  description = "My nix infrastructure";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     disko = {
@@ -7,13 +7,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
-      url = "github:nix-community/lanzaboote";
+      url = "github:CertainLach/lanzaboote/feat/xen";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
 
     # Build Inputs
@@ -29,6 +28,10 @@
       url = "github:OpenPlayVerse/POCBot";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.cargo2nix.inputs.nixpkgs.follows = "nixpkgs";
+    };
+    jankwrapper = {
+      url = "github:greysilly7/jankwrapper";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

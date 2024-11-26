@@ -9,6 +9,7 @@
     ./pocbot.nix
     ./postgres.nix
     ./vaultwarden.nix
-    ./tabby.nix
+    ./shadowsocks.nix
+    # ./tabby.nix
   ];
 }

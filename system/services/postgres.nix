@@ -1,11 +1,20 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   services.postgresql = {
     enable = true; # Enable PostgreSQL service
-    ensureDatabases = ["spacebar"]; # Ensure the "spacebar" database exists
+    package = pkgs.postgresqlVersions.postgresql_16_jit;
+    ensureDatabases = ["spacebar" "vaultwarden"]; # Ensure the "spacebar" database exists
     ensureUsers = [
       {
         name = "spacebar"; # Ensure the "spacebar" user exists
         ensureDBOwnership = true; # Ensure the user owns the database
+      }
+      {
+        name = "vaultwarden";
+        ensureDBOwnership = true;
       }
     ];
     enableTCPIP = true; # Enable TCP/IP connections

@@ -23,6 +23,7 @@
       ts_laptop_key = {};
       ts_srv_key = {};
       vaultwarden = {};
+      jankwrapper_secret_env = {};
     };
   };
 }

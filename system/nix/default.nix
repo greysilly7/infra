@@ -45,7 +45,7 @@
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/greysilly7/git/nixos-config";
+    flake = "/home/greysilly7/infra";
   };
 
   systemd.services.nix-daemon = {
