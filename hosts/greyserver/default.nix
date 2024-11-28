@@ -4,6 +4,7 @@
 {
   lib,
   modulesPath,
+  flake,
   ...
 }: {
   imports = [
@@ -27,4 +28,16 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
+
+  system.autoUpgrade = {
+    enable = true;
+    flake = flake.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "-L" # print build logs
+    ];
+    dates = "02:00";
+    randomizedDelaySec = "45min";
+  };
 }

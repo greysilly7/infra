@@ -24,6 +24,7 @@
       ts_srv_key = {};
       vaultwarden = {};
       jankwrapper_secret_env = {};
+      shadowsocks_pass = {};
     };
   };
 }

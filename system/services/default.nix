@@ -10,6 +10,7 @@
     ./postgres.nix
     ./vaultwarden.nix
     ./shadowsocks.nix
+    ./janktesting.nix
     # ./tabby.nix
   ];
 }

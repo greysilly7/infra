@@ -7,7 +7,7 @@
     owner = "MathMan05";
     repo = "JankClient";
     rev = "main";
-    sha256 = "sha256-8Hd8TFktyZlFGZ9Psjxbga7gXKChMtSbteJZtIhG+Og=";
+    sha256 = "sha256-huURj079g1YMC5tZda7HAv1yu5JZh7nBZxu+xQmNd2k=";
   };
 
   writableDir = "/var/lib/jankclient";
