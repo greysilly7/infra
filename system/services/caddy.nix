@@ -102,6 +102,10 @@
         }`
       }
 
+      handle_path /jankwrapper* {
+        reverse_proxy http://127.0.0.1:7878
+      }
+
       header {
         Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
         Referrer-Policy "origin-when-cross-origin"

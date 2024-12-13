@@ -12,9 +12,10 @@ in {
     after = ["network.target"];
     wantedBy = ["multi-user.target"];
     environment = {
-      JANKK_DIR = writableDir;
+      # TODO: Make this less jank
+      JANKK_DIR = "${writableDir}/gitfiles";
       NODE_ENV = "production";
-      PORT = "101052";
+      PORT = "65532";
     };
 
     preStart = ''
@@ -37,13 +38,6 @@ in {
     };
   };
 
-  users.users.jankclient = {
-    isSystemUser = true;
-    group = "jankclient";
-    home = writableDir;
-  };
-
-  users.groups.jankclient = {};
   systemd.tmpfiles.rules = [
     "d ${writableDir} 0755 jankclient jankclient - -"
   ];

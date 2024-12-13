@@ -24,10 +24,7 @@ in {
           noto-fonts-emoji
           jetbrains-mono
           ;
-      }
-      ++ [
-        (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
-      ];
+      };
 
     enableDefaultPackages = false;
 

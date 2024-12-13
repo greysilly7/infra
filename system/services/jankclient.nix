@@ -1,41 +1,45 @@
 {
   pkgs,
   lib,
+  config,
+  inputs,
   ...
 }: let
-  jankClientSrc = pkgs.fetchFromGitHub {
-    owner = "MathMan05";
-    repo = "JankClient";
-    rev = "main";
-    sha256 = "sha256-huURj079g1YMC5tZda7HAv1yu5JZh7nBZxu+xQmNd2k=";
-  };
-
   writableDir = "/var/lib/jankclient";
 in {
-  systemd.services.jankClient = {
+  systemd.services.jankclient = {
     description = "Jank Client Service";
     after = ["network.target"];
     wantedBy = ["multi-user.target"];
+    environment = {
+      # TODO: Make this less jank
+      JANKK_DIR = "${writableDir}/gitfiles";
+      NODE_ENV = "production";
+    };
 
     preStart = ''
       ${pkgs.coreutils}/bin/mkdir -p ${writableDir}
-      ${pkgs.coreutils}/bin/cp -a -r ${jankClientSrc}/* ${writableDir}
       ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}
       ${pkgs.coreutils}/bin/chmod -R 755 ${writableDir}
-      ${pkgs.bun}/bin/bun install
-      ${pkgs.bun}/bin/bun x gulp --swc
+      ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}
+      ${pkgs.coreutils}/bin/chmod -R 755 ${writableDir}
     '';
-    script = "${pkgs.bun}/bin/bun ${writableDir}/dist/index.js";
-    path = [pkgs.nodejs_latest];
+
+    script = "${inputs.jankwrapper.packages.${pkgs.system}.default}/bin/jankwrapper";
+    path = [pkgs.nodejs_latest pkgs.bun pkgs.git];
 
     serviceConfig = {
       WorkingDirectory = writableDir;
       Restart = "always";
       User = "jankclient";
       Group = "jankclient";
-      Environment = ["NODE_ENV=production"];
+      EnvironmentFile = config.sops.secrets.jankwrapper_secret_env.path; # Path to environment file for secrets
     };
   };
+
+  systemd.tmpfiles.rules = [
+    "d ${writableDir} 0755 jankclient jankclient - -"
+  ];
 
   users.users.jankclient = {
     isSystemUser = true;
