@@ -28,10 +28,14 @@
       url = "github:OpenPlayVerse/POCBot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    jankwrapper = {
-      url = "github:greysilly7/jankwrapper";
-      inputs.nixpkgs.follows = "nixpkgs";
+    jankclient = {
+      url = "github:mathman05/jankclient";
+      flake = false;
     };
+    # jankwrapper = {
+    #   url = "github:greysilly7/jankwrapper";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = inputs @ {
@@ -55,8 +59,6 @@
       }
       // import ./modules;
 
-    packages.x86_64-linux = user.packages;
     formatter.x86_64-linux = pkgs.alejandra;
-    devShells.x86_64-linux.default = user.shell;
   };
 }

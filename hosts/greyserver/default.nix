@@ -6,6 +6,7 @@
   lib,
   pkgs,
   modulesPath,
+  flake,
   ...
 }: {
   imports = [
@@ -28,4 +29,16 @@
   # networking.interfaces.ens3.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
+  system.autoUpgrade = {
+    enable = true;
+    flake = flake.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "-L" # print build logs
+    ];
+    dates = "daily";
+    randomizedDelaySec = "45min";
+  };
 }
