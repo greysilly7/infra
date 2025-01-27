@@ -23,9 +23,12 @@ in {
       ${pkgs.coreutils}/bin/chmod -R 755 ${writableDir}
       ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}
       ${pkgs.coreutils}/bin/chmod -R 755 ${writableDir}
+      ${lib.getExe pkgs.bun} install
+      ${lib.getExe pkgs.bun} gulp --swc
     '';
 
-    script = "${inputs.jankwrapper.packages.${pkgs.system}.default}/bin/jankwrapper";
+    # script = "${inputs.jankwrapper.packages.${pkgs.system}.default}/bin/jankwrapper";
+    script = "${lib.getExe pkgs.bun} ${writableDir}/gitfiles/dist/index.js";
     path = [pkgs.nodejs_latest pkgs.bun pkgs.git];
 
     serviceConfig = {
