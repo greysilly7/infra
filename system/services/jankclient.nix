@@ -32,7 +32,7 @@ in {
     path = [pkgs.nodejs_latest pkgs.bun pkgs.git];
 
     serviceConfig = {
-      WorkingDirectory = writableDir;
+      WorkingDirectory = "${writableDir}/gitfiles";
       Restart = "always";
       User = "jankclient";
       Group = "jankclient";
