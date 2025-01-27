@@ -28,7 +28,7 @@ in {
     '';
 
     # script = "${inputs.jankwrapper.packages.${pkgs.system}.default}/bin/jankwrapper";
-    script = "${lib.getExe pkgs.bun} ${writableDir}/gitfiles/dist/index.js";
+    script = "${lib.getExe pkgs.bun} dist/index.js";
     path = [pkgs.nodejs_latest pkgs.bun pkgs.git];
 
     serviceConfig = {
@@ -39,10 +39,6 @@ in {
       EnvironmentFile = config.sops.secrets.jankwrapper_secret_env.path; # Path to environment file for secrets
     };
   };
-
-  systemd.tmpfiles.rules = [
-    "d ${writableDir} 0755 jankclient jankclient - -"
-  ];
 
   users.users.jankclient = {
     isSystemUser = true;
