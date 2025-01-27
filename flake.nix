@@ -27,7 +27,6 @@
     pocbot = {
       url = "github:OpenPlayVerse/POCBot";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.cargo2nix.inputs.nixpkgs.follows = "nixpkgs";
     };
     jankwrapper = {
       url = "github:greysilly7/jankwrapper";
@@ -41,13 +40,11 @@
     ...
   }: let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    theme = import ./theme;
     user = import ./user {
-      inherit pkgs theme;
+      inherit pkgs;
       flake = self;
     };
   in {
-    packages = {};
     nixosConfigurations = import ./hosts inputs;
     nixosModules =
       {
@@ -57,5 +54,9 @@
         sops-nix = inputs.sops-nix.nixosModules.sops;
       }
       // import ./modules;
+
+    packages.x86_64-linux = user.packages;
+    formatter.x86_64-linux = pkgs.alejandra;
+    devShells.x86_64-linux.default = user.shell;
   };
 }

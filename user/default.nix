@@ -1,8 +1,4 @@
-{
-  pkgs,
-  theme,
-  ...
-}: rec {
+{pkgs, ...}: rec {
   packages = let
     inherit (pkgs) callPackage;
   in {
