@@ -56,6 +56,7 @@
       disko = inputs.disko.nixosModules.default;
       sops-nix = inputs.sops-nix.nixosModules.sops;
       lix = inputs.lix-module.nixosModules.default;
+      homix = import ./modules/homix;
 
       nix-topology = inputs.nix-topology.nixosModules.default;
     };
