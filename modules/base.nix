@@ -5,6 +5,7 @@
     ../system/nix
     ../system/net
     ../system/fonts
+    ../system/secrets
   ];
 
   time = {
