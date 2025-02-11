@@ -11,16 +11,8 @@
 }: {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
-
-    ../../modules/base-server.nix
-
-    ../../system/services/spacebarchat
-    ../../system/services/caddy.nix
-    ../../system/services/cloudflared.nix
-    ../../system/services/jankclient.nix
-    ../../system/services/pocbot.nix
-    ../../system/services/postgres.nix
-    ../../system/services/vaultwarden.nix
+    # "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
+    # ./disko.nix
   ];
 
   boot.initrd.availableKernelModules = ["ata_piix" "xhci_pci" "ahci" "virtio_pci" "sr_mod" "virtio_blk"];

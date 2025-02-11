@@ -54,6 +54,29 @@
           };
         };
       };
+      /*
+         Transplanted into my new gaming laptop
+      nvme0n1 = {
+        type = "disk";
+        device = "/dev/nvme0n1";
+        content = {
+          type = "gpt";
+          partitions = {
+            data = {
+              size = "100%";
+              content = {
+                type = "filesystem";
+                format = "btrfs";
+                mountpoint = "/data";
+                mountOptions = [
+                  "compress=zstd"
+                ];
+              };
+            };
+          };
+        };
+      };
+      */
     };
   };
 }

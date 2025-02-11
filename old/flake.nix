@@ -2,6 +2,14 @@
   description = "My nix infrastructure";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    lanzaboote = {
+      url = "github:CertainLach/lanzaboote/feat/xen";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,7 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Personal Projects
+    # Build Inputs
     greysilly7-xyz = {
       url = "github:greysilly7/greysilly7.xyz";
       flake = false;
@@ -32,8 +40,6 @@
     #   url = "github:greysilly7/jankwrapper";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-
-    nix-topology.url = "github:oddlama/nix-topology";
   };
 
   outputs = inputs @ {
@@ -42,25 +48,23 @@
     ...
   }: let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      overlays = [inputs.nix-topology.overlays.default];
+    pkgs = import nixpkgs {inherit system;};
+    user = import ./user {
+      inherit pkgs;
+      flake = self;
     };
   in {
     nixosConfigurations = import ./hosts inputs;
-    nixosModules = {
-      nix-topology = inputs.nix-topology.nixosModules.default;
-    };
-    formatter.x86_64-linux = pkgs.alejandra;
+    nixosModules =
+      {
+        system = import ./system;
+        user = user.module;
+        disko = inputs.disko.nixosModules.default;
+        sops-nix = inputs.sops-nix.nixosModules.sops;
+        lix = inputs.lix-module.nixosModules.default;
+      }
+      // import ./modules;
 
-    topology.x86_64-linux = import inputs.nix-topology {
-      inherit pkgs; # Only this package set must include nix-topology.overlays.default
-      modules = [
-        # Your own file to define global topology. Works in principle like a nixos module but uses different options.
-        ./topology.nix
-        # Inline module to inform topology of your existing NixOS hosts.
-        {nixosConfigurations = self.nixosConfigurations;}
-      ];
-    };
+    formatter.x86_64-linux = pkgs.alejandra;
   };
 }

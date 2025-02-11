@@ -10,6 +10,7 @@
       modules =
         [
           {networking.hostName = name;}
+          inputs.lanzaboote.nixosModules.lanzaboote
           ./${name}
         ]
         ++ builtins.attrValues self.nixosModules;

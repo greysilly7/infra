@@ -1,4 +1,4 @@
-{config, ...}: {
+{...}: {
   sops = {
     # Path to the default SOPS file
     defaultSopsFile = ../../secrets/secrets.yaml;
@@ -13,21 +13,18 @@
 
     secrets = {
       # List of secrets managed by SOPS
-      grey_pass = {};
-      greyberet_pass = {};
-      cftoken = {};
-      vaultwarden = {};
+      adguardhomewebpass = {};
       cf_acme = {};
-      ts_srv_key = {};
+      cftoken = {};
       github_ci_token = {};
-      pocbot_token = {
-        owner = config.users.users.pocbot.name;
-        group = config.users.users.pocbot.group;
-      };
-      jankwrapper_secret_env = {
-        owner = config.users.users.jankclient.name;
-        group = config.users.users.jankclient.group;
-      };
+      grey_pass = {};
+      imagorenv = {};
+      pocbot_token = {};
+      ts_laptop_key = {};
+      ts_srv_key = {};
+      vaultwarden = {};
+      jankwrapper_secret_env = {};
+      shadowsocks_pass = {};
     };
   };
 }
