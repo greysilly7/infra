@@ -8,7 +8,6 @@
   users.users.greyberet = {
     isNormalUser = true;
     extraGroups = [];
-    homix = false;
     shell = pkgs.bash;
     hashedPasswordFile = config.sops.secrets.greyberet_pass.path;
     openssh.authorizedKeys.keys = [

@@ -20,7 +20,6 @@
       "nix"
       "adbusers"
     ];
-    homix = true;
     shell = pkgs.bash;
     hashedPasswordFile = config.sops.secrets.grey_pass.path;
     openssh.authorizedKeys.keys = [
