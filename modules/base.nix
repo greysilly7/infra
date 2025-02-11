@@ -5,9 +5,11 @@
     ../system/nix
     ../system/net
     ../system/secrets
+
     # This is used for all my systems
     ../system/disks
     ../system/boot
+    ../system/services/openssh.nix
   ];
 
   time = {

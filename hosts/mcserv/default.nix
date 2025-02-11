@@ -8,6 +8,7 @@
     (modulesPath + "/profiles/qemu-guest.nix")
 
     ../../modules/base-server.nix
+    ../../system/users/greyberet
   ];
 
   boot.initrd.availableKernelModules = ["ata_piix" "xhci_pci" "ahci" "virtio_pci" "sr_mod" "virtio_blk"];
