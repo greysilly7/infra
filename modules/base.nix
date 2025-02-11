@@ -4,7 +4,6 @@
     ../system/users/greysilly7
     ../system/nix
     ../system/net
-    ../system/fonts
     ../system/secrets
     # This is used for all my systems
     ../system/disks
@@ -31,6 +30,8 @@
       LC_TIME = "en_US.UTF-8";
     };
   };
+
+  networking.firewall.enable = true;
 
   system.stateVersion = "24.05";
 }

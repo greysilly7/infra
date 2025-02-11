@@ -74,5 +74,8 @@
   # slows down boot time
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+  };
 }
