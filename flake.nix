@@ -49,6 +49,10 @@
   in {
     nixosConfigurations = import ./hosts inputs;
     nixosModules = {
+      disko = inputs.disko.nixosModules.default;
+      sops-nix = inputs.sops-nix.nixosModules.sops;
+      lix = inputs.lix-module.nixosModules.default;
+
       nix-topology = inputs.nix-topology.nixosModules.default;
     };
     formatter.x86_64-linux = pkgs.alejandra;

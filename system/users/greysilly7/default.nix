@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  sops,
   ...
 }: {
   sops.secrets.grey_pass.neededForUsers = true;
