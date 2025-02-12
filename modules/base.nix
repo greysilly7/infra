@@ -40,23 +40,15 @@ in {
       (pkgs)
       git
       ripgrep
-      zoxide
-      fzf
-      eza
-      bat
-      gping
-      dogdns
-      ffmpeg-full
       nmap
       grex
       jq
       rsync
       unzip
       zip
+      tar
       dnsutils
       which
-      nixd
-      alejandra
       ;
   };
 

@@ -8,7 +8,7 @@
     package = pkgs.postgresqlVersions.postgresql_16_jit;
     enableTCPIP = true; # Enable TCP/IP connections
 
-    ensureDatabases = ["spacebar" "vaultwarden"]; # Ensure the "spacebar" database exists
+    ensureDatabases = ["spacebar" "vaultwarden" "iremia"]; # Ensure the "spacebar" database exists
     ensureUsers = [
       {
         name = "spacebar"; # Ensure the "spacebar" user exists
@@ -16,6 +16,10 @@
       }
       {
         name = "vaultwarden";
+        ensureDBOwnership = true;
+      }
+      {
+        name = "iremia";
         ensureDBOwnership = true;
       }
     ];
@@ -30,6 +34,9 @@
       # IPv6 connections
       host    all       all     ::1/128         trust
 
+
+      # Allow local network
+      host    all       all     192.168.1.238/32 trust
     '';
 
     # Ident map configuration
