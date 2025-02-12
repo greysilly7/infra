@@ -67,7 +67,7 @@
       fi
 
       # otherwise authenticate with tailscale
-      ${pkgs.tailscale}/bin/tailscale up -authkey file://${config.sops.secrets.ts_srv_key.path}
+      ${pkgs.tailscale}/bin/tailscale up -authkey file://${config.sops.secrets.ts_key.path}
     '';
   };
 

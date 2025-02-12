@@ -18,7 +18,7 @@
       cftoken = {};
       vaultwarden = {};
       cf_acme = {};
-      ts_srv_key = {};
+      ts_key = {};
       imagorenv = {};
       github_ci_token = {};
       pocbot_token = {
