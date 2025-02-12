@@ -23,7 +23,7 @@ in {
       ${pkgs.coreutils}/bin/cp -r ${inputs.jankclient}/* ${writableDir}/gitfiles
       ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles
       ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}
-      ${lib.getExe pkgs.bun} run build --cwd ${writableDir}/gitfiles --swc
+      ${lib.getExe pkgs.bun} gulp --cwd ${writableDir}/gitfiles --swc
       ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}
     '';
 
