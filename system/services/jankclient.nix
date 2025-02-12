@@ -20,7 +20,7 @@ in {
     preStart = ''
       ${pkgs.coreutils}/bin/mkdir -p ${writableDir}/gitfiles
       ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}
-      ${lib.getExe pkgs.rsync}-a ${inputs.jankclient}/ ${writableDir}/gitfiles
+      ${lib.getExe pkgs.rsync} -a ${inputs.jankclient}/ ${writableDir}/gitfiles
       ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles -d
       ${lib.getExe pkgs.bun} gulp --cwd ${writableDir}/gitfiles --swc
       ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}
