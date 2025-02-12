@@ -20,13 +20,13 @@ in {
     preStart = ''
       ${pkgs.coreutils}/bin/mkdir -p ${writableDir}
       ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}
-      ${pkgs.coreutils}/bin/cp -r ${inputs.jankclient}/* ${writableDir}
+      ${pkgs.coreutils}/bin/cp -r ${inputs.jankclient}/* ${writableDir}/gitfiles
       ${lib.getExe pkgs.bun} install --cwd ${writableDir}
       ${lib.getExe pkgs.bun} gulp --cwd ${writableDir} --swc
     '';
 
     # script = "${inputs.jankwrapper.packages.${pkgs.system}.default}/bin/jankwrapper";
-    script = "${lib.getExe pkgs.bun} ${writableDir}/dist/index.js";
+    script = "${lib.getExe pkgs.bun} ${writableDir}/gitfiles/dist/index.js";
     path = [pkgs.nodejs_latest pkgs.bun pkgs.git];
 
     serviceConfig = {
