@@ -57,5 +57,7 @@ in {
   programs.nix-ld.libraries = [];
   programs.direnv.enable = true;
 
+  services.udev.enable = true;
+
   system.stateVersion = "24.05";
 }
