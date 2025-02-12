@@ -18,8 +18,9 @@ in {
     };
 
     preStart = ''
+      whoami
       ${pkgs.coreutils}/bin/mkdir -p ${writableDir}/gitfiles
-      ${pkgs.rsync}/bin/rsync -a ${inputs.jankclient}/ ${writableDir}/gitfiles
+      ${pkgs.rsync}/bin/rsync -a ${inputs.jankclient} ${writableDir}/gitfiles
       ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}/gitfiles
       ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles
       ${lib.getExe pkgs.bun} gulp --cwd ${writableDir}/gitfiles --swc
