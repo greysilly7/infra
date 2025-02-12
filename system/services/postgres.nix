@@ -7,7 +7,6 @@
     enable = true; # Enable PostgreSQL service
     package = pkgs.postgresqlVersions.postgresql_16_jit;
     enableTCPIP = true; # Enable TCP/IP connections
-    openFirewall = true; # Open firewall for PostgreSQL
 
     ensureDatabases = ["spacebar" "vaultwarden" "iremia"]; # Ensure the "spacebar" database exists
     ensureUsers = [
@@ -118,4 +117,7 @@
       #   for more professional expertise.
     };
   };
+
+  # Open Firewall
+  networking.firewall.allowedTCPPorts = [5432];
 }
