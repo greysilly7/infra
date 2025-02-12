@@ -33,7 +33,6 @@ in {
       WorkingDirectory = "${writableDir}/gitfiles";
       Restart = "always";
       User = "jankclient";
-      Group = "jankclient";
       EnvironmentFile = config.sops.secrets.jankwrapper_secret_env.path; # Path to environment file for secrets
     };
   };
@@ -43,6 +42,4 @@ in {
     group = "jankclient";
     home = writableDir;
   };
-
-  users.groups.jankclient = {};
 }
