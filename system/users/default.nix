@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   users = {
     mutableUsers = false;
     users = {
@@ -13,6 +9,7 @@
   security = {
     sudo = {
       enable = true;
+      package = pkgs.sudo-rs;
       extraRules = [
         {
           commands =

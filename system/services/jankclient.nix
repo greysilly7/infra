@@ -21,8 +21,8 @@ in {
       ${pkgs.coreutils}/bin/mkdir -p ${writableDir}/gitfiles
       ${pkgs.rsync}/bin/rsync -a ${inputs.jankclient}/ ${writableDir}/gitfiles
       ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}/gitfiles
-      ${lib.getExe pkgs.sudo} -u jankclient ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles
-      ${lib.getExe pkgs.sudo} -u jankclient ${lib.getExe pkgs.bun} gulp --cwd ${writableDir}/gitfiles --swc
+      ${lib.getExe pkgs.sudo-rs} -u jankclient ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles
+      ${lib.getExe pkgs.sudo-rs} -u jankclient ${lib.getExe pkgs.bun} gulp --cwd ${writableDir}/gitfiles --swc
     '';
 
     script = "${lib.getExe pkgs.bun} ${writableDir}/gitfiles/dist/index.js";
