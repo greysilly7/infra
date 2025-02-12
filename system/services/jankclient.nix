@@ -19,7 +19,7 @@ in {
 
     preStart = ''
       ${pkgs.coreutils}/bin/mkdir -p ${writableDir}
-      ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}
+      ${pkgs.coreutils}/bin/chown -R jankclient:users ${writableDir}
       ${pkgs.coreutils}/bin/cp -r ${inputs.jankclient}/* ${writableDir}/gitfiles
       ${lib.getExe pkgs.bun} install --cwd ${writableDir}
       ${lib.getExe pkgs.bun} gulp --cwd ${writableDir} --swc
@@ -33,6 +33,7 @@ in {
       WorkingDirectory = "${writableDir}/gitfiles";
       Restart = "always";
       User = "jankclient";
+      Group = "jankclient";
       EnvironmentFile = config.sops.secrets.jankwrapper_secret_env.path; # Path to environment file for secrets
     };
   };
@@ -42,4 +43,6 @@ in {
     group = "jankclient";
     home = writableDir;
   };
+
+  users.groups.jankclient = {};
 }
