@@ -48,6 +48,8 @@ in {
       zip
       dnsutils
       which
+      udev
+      wormhole-rs
       ;
   };
 
