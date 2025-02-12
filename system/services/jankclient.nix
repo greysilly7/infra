@@ -18,8 +18,8 @@ in {
     };
 
     preStart = ''
-      # ${pkgs.coreutils}/bin/mkdir -p ${writableDir}
-      # ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}
+      ${pkgs.coreutils}/bin/mkdir -p ${writableDir}/gitfiles
+      ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}
       ${pkgs.coreutils}/bin/cp -r ${inputs.jankclient}/* ${writableDir}/gitfiles
       ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfules
       ${lib.getExe pkgs.bun} gulp --cwd ${writableDir}/gitfiles --swc
