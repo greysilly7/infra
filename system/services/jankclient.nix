@@ -21,6 +21,7 @@ in {
       whoami
       ${pkgs.coreutils}/bin/mkdir -p ${writableDir}/gitfiles
       ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}/gitfiles
+      ${pkgs.coreutils}/bin/chmod -R 755 ${writableDir}
       ${lib.getExe pkgs.rsync} -a ${inputs.jankclient}/* ${writableDir}/gitfiles
       ${pkgs.coreutils}/bin/cp ${writableDir}/gitfiles/src/webpage/instances.json ${writableDir}
       ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles --frozen-lockfile --backend=hardlink --verbose
