@@ -46,7 +46,6 @@ in {
       rsync
       unzip
       zip
-      tar
       dnsutils
       which
       ;
