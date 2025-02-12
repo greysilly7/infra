@@ -36,7 +36,7 @@
 
 
       # Allow local network
-      host    all       all     192.168.1.238/32 trust
+      host    all       all     192.168.1.238/24 trust
     '';
 
     # Ident map configuration
