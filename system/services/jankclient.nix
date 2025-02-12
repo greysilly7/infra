@@ -39,6 +39,7 @@ in {
 
   users.users.jankclient = {
     isSystemUser = true;
+    uid = null;
     group = "jankclient";
     home = writableDir;
   };
