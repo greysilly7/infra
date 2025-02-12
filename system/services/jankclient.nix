@@ -22,7 +22,7 @@ in {
       ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}
       ${pkgs.coreutils}/bin/cp -r ${inputs.jankclient}/* ${writableDir}/gitfiles
       ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles
-      ${lib.getExe pkgs.bun} run gulp --cwd ${writableDir}/gitfiles --swc
+      ${lib.getExe pkgs.bun} run build --cwd ${writableDir}/gitfiles --swc
     '';
 
     # script = "${inputs.jankwrapper.packages.${pkgs.system}.default}/bin/jankwrapper";
