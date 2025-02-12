@@ -22,7 +22,7 @@ in {
       ${pkgs.coreutils}/bin/mkdir -p ${writableDir}/gitfiles
       ${pkgs.coreutils}/bin/chown -R jankclient:jankclient ${writableDir}/gitfiles
       ${lib.getExe pkgs.rsync} -a ${inputs.jankclient}/* ${writableDir}/gitfiles
-      ${pkgs.coreutils}/bin/cp ${writableDir}/gitfiles/src/webpage/insances.json ${writableDir}
+      ${pkgs.coreutils}/bin/cp ${writableDir}/gitfiles/src/webpage/instances.json ${writableDir}
       ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles --frozen-lockfile --backend=hardlink --verbose
       ${lib.getExe pkgs.bun} gulp --cwd ${writableDir}/gitfiles --swc
     '';
