@@ -3,6 +3,7 @@
     services.openssh = {
       enable = true;
       openFirewall = true;
+      allowSFTP = true;
       settings = {
         # Root user is used for remote deployment, so we need to allow it
         PermitRootLogin = lib.mkForce "prohibit-password";
