@@ -32,6 +32,9 @@
       url = "github:mathman05/jankclient";
       flake = false;
     };
+    mc_tools = {
+      url = "github:greysilly7/mc_tools";
+    };
     # jankwrapper = {
     #   url = "github:greysilly7/jankwrapper";
     #   inputs.nixpkgs.follows = "nixpkgs";
