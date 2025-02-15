@@ -19,8 +19,6 @@
     }
   ];
 in {
-  services.rabbitmq.enable = true;
-
   systemd.services =
     lib.attrsets.genAttrs
     (map (service: "spacebar-server-${service.name}") services)
