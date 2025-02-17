@@ -1,6 +1,7 @@
 {lib, ...}: {
   imports = [
     ./base.nix
+    ../system/services/docker.nix
   ];
 
   documentation.nixos.enable = false;
