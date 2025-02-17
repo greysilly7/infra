@@ -1,10 +1,10 @@
-{pkgs, ...}: {
+{...}: {
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
     storageDriver = "btrfs";
     rootless = {
-      enable = true;
+      enable = false;
       setSocketVariable = true;
     };
   };
