@@ -8,7 +8,7 @@
 
   users.users.greyberet = {
     isNormalUser = true;
-    extraGroups = [];
+    extraGroups = ["docker"];
     shell = pkgs.bash;
 
     hashedPasswordFile = config.sops.secrets.greyberet_pass.path;

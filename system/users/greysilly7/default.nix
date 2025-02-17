@@ -19,6 +19,7 @@
       "power"
       "nix"
       "adbusers"
+      "docker"
     ];
     shell = pkgs.bash;
     hashedPasswordFile = config.sops.secrets.grey_pass.path;
