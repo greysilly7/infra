@@ -1,6 +1,6 @@
 {config, ...}: {
   virtualisation.oci-containers = {
-    backend = "docker";
+    backend = "podman";
     containers = {
       imagor = {
         image = "shumc/imagor";
