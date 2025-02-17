@@ -3,7 +3,6 @@
     ./net
     ./disks
     ./boot
-    ./fonts
     ./services
     ./users
     ./nix

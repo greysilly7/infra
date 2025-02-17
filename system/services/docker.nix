@@ -20,4 +20,6 @@
     #pkgs.docker-compose # start group of containers for dev
     pkgs.podman-compose # start group of containers for dev
   ];
+
+  services.dbus.enable = true;
 }
