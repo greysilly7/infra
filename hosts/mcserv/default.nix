@@ -40,7 +40,17 @@
 
   # Allow minecraft in firewall
   networking.firewall = {
-    allowedTCPPorts = [25565 8100 24454 19132];
-    allowedUDPPorts = [25565 19132];
+    allowedTCPPorts = [25565 8100 19132];
+    allowedUDPPorts = [
+      24454
+      37429
+      49210
+      24554
+      19132
+    ];
   };
+  # 24454 - SimpleVoiceChat Proxy
+  # 37429 - SimpleVoiceChat Survival
+  # 49210 - SimpleVoiceChat Creative
+  # 24554 - SimpleVoiceChat Lobby
 }
