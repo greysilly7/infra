@@ -41,6 +41,6 @@
   # Allow minecraft in firewall
   networking.firewall = {
     allowedTCPPorts = [25565 8100 24454 19132];
-    allowedUDPPorts = [24454 19132];
+    allowedUDPPorts = [25565 19132];
   };
 }
