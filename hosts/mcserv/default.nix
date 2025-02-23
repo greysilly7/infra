@@ -43,14 +43,18 @@
     allowedTCPPorts = [25565 8100 19132];
     allowedUDPPorts = [
       24454
-      37429
-      49210
-      24554
       19132
     ];
   };
+  # 8100 - Bluemap
   # 24454 - SimpleVoiceChat Proxy
   # 37429 - SimpleVoiceChat Survival
   # 49210 - SimpleVoiceChat Creative
   # 24554 - SimpleVoiceChat Lobby
+  # 19132 - Geyser
+  #
+  # 2`5565 - Velocity
+  # 2`5560 - Survival
+  # 2`5561 - Creative
+  # 2`5562 - Lobby
 }
