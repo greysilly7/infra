@@ -45,6 +45,8 @@
     flags = [
       "--update-input"
       "nixpkgs"
+      "--update-input"
+      "jankclient"
       "-L" # print build logs
     ];
     dates = "daily";
