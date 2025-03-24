@@ -39,8 +39,6 @@
     #   url = "github:greysilly7/jankwrapper";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-
-    nix-topology.url = "github:oddlama/nix-topology";
   };
 
   outputs = inputs @ {
@@ -60,19 +58,7 @@
       sops-nix = inputs.sops-nix.nixosModules.sops;
       lix = inputs.lix-module.nixosModules.default;
       homix = import ./modules/homix;
-
-      nix-topology = inputs.nix-topology.nixosModules.default;
     };
     formatter.x86_64-linux = pkgs.alejandra;
-
-    topology.x86_64-linux = import inputs.nix-topology {
-      inherit pkgs; # Only this package set must include nix-topology.overlays.default
-      modules = [
-        # Your own file to define global topology. Works in principle like a nixos module but uses different options.
-        ./topology.nix
-        # Inline module to inform topology of your existing NixOS hosts.
-        {nixosConfigurations = self.nixosConfigurations;}
-      ];
-    };
   };
 }
