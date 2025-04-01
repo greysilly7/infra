@@ -18,7 +18,7 @@ in {
       User = "root";
       WorkingDirectory = "/run/wings";
       LimitNOFILE = 4096;
-      PIDFile = "/var/run/wings/daemon.pid";
+      PIDFile = "/run/wings/daemon.pid";
       ExecStart = "/usr/bin/env sh -c '/usr/bin/env mkdir /run/wings; /usr/bin/env cat /etc/pterodactyl/config.yml > /run/wings/config.yml; ${wingsBinary}/bin/wings --config /run/wings/config.yml'";
       Restart = "on-failure";
       RestartSec = "5s";
