@@ -1,5 +1,8 @@
-{ lib, buildGoModule, fetchFromGitHub }:
-
+{
+  lib,
+  buildGoModule,
+  fetchFromGitHub,
+}:
 buildGoModule rec {
   pname = "pterodactyl-wings";
   version = "1.11.10";
@@ -8,11 +11,11 @@ buildGoModule rec {
     owner = "pterodactyl";
     repo = "wings";
     rev = "v${version}";
-    sha256 = "sha256-lDJ0/yxmS7+9TVp3YpEdQQb12R4i2GyQ0w6RXoC5NHs=";
+    sha256 = "sha256-EOkHi+x4ciODyHPPx7766IEh8XGLHY4Ng1N/iq2mgJI=";
   };
 
   vendorHash = "sha256-VApv+VSot/GmOyU3pBlOvHYG0oE3fCtTxN5F3PsYYf0=";
-  subPackages = [ "." ];
+  subPackages = ["."];
 
   patches = [
     ./wings.patch
