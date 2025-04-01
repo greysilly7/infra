@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   nix = {
     gc.automatic = false;
     package = pkgs.lix;
