@@ -55,7 +55,7 @@
     nixosModules = {
       disko = inputs.disko.nixosModules.default;
       sops-nix = inputs.sops-nix.nixosModules.sops;
-      lix = inputs.lix-module.nixosModules.default;
+      # lix = inputs.lix-module.nixosModules.default;
       homix = import ./modules/homix;
     };
     formatter.x86_64-linux = pkgs.alejandra;
