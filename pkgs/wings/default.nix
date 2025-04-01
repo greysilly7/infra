@@ -11,12 +11,12 @@ buildGoModule rec {
     sha256 = "sha256-lDJ0/yxmS7+9TVp3YpEdQQb12R4i2GyQ0w6RXoC5NHs=";
   };
 
-  vendorSha256 = "sha256-VApv+VSot/GmOyU3pBlOvHYG0oE3fCtTxN5F3PsYYf0=";
+  vendorHash = "sha256-VApv+VSot/GmOyU3pBlOvHYG0oE3fCtTxN5F3PsYYf0=";
   subPackages = [ "." ];
 
   patches = [
     ./wings.patch
-  ]
+  ];
 
   ldflags = [
     "-X github.com/pterodactyl/wings/system.Version=${version}"

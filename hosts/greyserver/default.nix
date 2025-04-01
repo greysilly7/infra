@@ -22,6 +22,7 @@
     ../../system/services/postgres.nix
     ../../system/services/vaultwarden.nix
     ../../system/services/rabbitmq.nix
+    ../../system/services/pterodactyl-wings.nix
   ];
 
   boot.initrd.availableKernelModules = ["ata_piix" "xhci_pci" "ahci" "virtio_pci" "sr_mod" "virtio_blk"];
