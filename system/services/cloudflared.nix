@@ -1,4 +1,4 @@
-{config, ...}: {
+{pkgs, config, ...}: {
   services = {
     cloudflare-dyndns = {
       enable = true;
@@ -10,6 +10,7 @@
     };
     cloudflared = {
       enable = true;
+      package = pkgs.callPackage ../../pkgs/cloudflared.nix {};
       tunnels = {
         "Wings_MCServer" = {
           credentialsFile = "${config.sops.secrets.cloudflared-creds.path}";
