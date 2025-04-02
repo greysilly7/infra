@@ -72,8 +72,8 @@ buildGoModule rec {
   doCheck = !stdenv.hostPlatform.isDarwin;
 
   passthru = {
-    tests.simple = callPackage ./tests.nix { inherit version; };
-    updateScript = gitUpdater { };
+    tests.simple = callPackage ./tests.nix {inherit version;};
+    updateScript = gitUpdater {};
   };
 
   meta = with lib; {

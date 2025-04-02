@@ -1,4 +1,9 @@
-{lib, pkgs, config, ...}: let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   wingsConfig = ''
     # /etc/pterodactyl/configuration.yml managed by /etc/NixOS/wings.nix
   '';
@@ -24,6 +29,6 @@ in {
       RestartSec = "5s";
     };
     wantedBy = ["multi-user.target"];
-    path = [ pkgs.uutils-coreutils-noprefix];
+    path = [pkgs.uutils-coreutils-noprefix];
   };
 }
