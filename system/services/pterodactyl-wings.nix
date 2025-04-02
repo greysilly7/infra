@@ -1,7 +1,7 @@
 {lib, pkgs, config, ...}: let
   wingsConfig = ''
     # /etc/pterodactyl/configuration.yml managed by /etc/NixOS/wings.nix
-  ''
+  '';
   wingsBinary = pkgs.callPackage ../../pkgs/wings {};
 in {
   environment.etc."pterodactyl/config.yml".text = wingsConfig;
