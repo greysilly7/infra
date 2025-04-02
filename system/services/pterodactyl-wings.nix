@@ -37,7 +37,7 @@ in {
     group = "pterodactyl";
     home = "/var/lib/pterodactyl";
     createHome = true;
-    extraGroups = [ "docker" ];
+    extraGroups = ["docker"];
   };
   users.groups.pterodactyl = {};
 }

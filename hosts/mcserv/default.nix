@@ -9,6 +9,7 @@
 
     ../../modules/base-server.nix
     ../../system/users/greyberet
+    ../../system/services/pterodactyl-wings.nix
   ];
 
   boot.initrd.availableKernelModules = ["ata_piix" "xhci_pci" "ahci" "virtio_pci" "sr_mod" "virtio_blk"];
@@ -40,12 +41,20 @@
 
   # Allow minecraft in firewall
   networking.firewall = {
-    allowedTCPPorts = [25565 8100 19132];
-    allowedUDPPorts = [
-      24454
-      19132
+    allowedTCPPortRanges = [
+      {
+        from = 25565;
+        to = 25600;
+      }
+    ];
+    allowedUDPPortRanges = [
+      {
+        from = 25565;
+        to = 25600;
+      }
     ];
   };
+
   # 8100 - Bluemap
   # 24454 - SimpleVoiceChat Proxy
   # 37429 - SimpleVoiceChat Survival
