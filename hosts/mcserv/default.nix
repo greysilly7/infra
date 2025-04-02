@@ -2,6 +2,8 @@
   lib,
   modulesPath,
   flake,
+  config,
+  pkgs,
   ...
 }: {
   imports = [
@@ -53,6 +55,17 @@
         to = 25600;
       }
     ];
+  };
+
+  services.cloudflared = {
+    enable = true;
+    package = pkgs.callPackage ../../pkgs/cloudflared.nix {};
+    tunnels = {
+      "Wings_MCServer" = {
+        credentialsFile = "${config.sops.secrets.cloudflared-creds.path}";
+        default = "http_status:404";
+      };
+    };
   };
 
   # 8100 - Bluemap
