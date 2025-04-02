@@ -34,6 +34,7 @@
         */
       };
       cloudflared-creds = {};
+      wings = {};
     };
   };
 }
