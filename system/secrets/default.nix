@@ -33,6 +33,7 @@
         group = config.users.users.jankclient.group;
         */
       };
+      cloudflared-creds = {};
     };
   };
 }
