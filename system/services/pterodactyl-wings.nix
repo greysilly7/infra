@@ -1,4 +1,4 @@
-{lib, pkgs, ...}: let
+{lib, pkgs, config, ...}: let
   wingsConfig = ''
     # /etc/pterodactyl/configuration.yml managed by /etc/NixOS/wings.nix
   '' + builtins.readFile config.sops.wings.path;
