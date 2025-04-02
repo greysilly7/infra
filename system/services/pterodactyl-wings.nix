@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+{lib, pkgs, ...}: let
   wingsConfig = ''
     # /etc/pterodactyl/configuration.yml managed by /etc/NixOS/wings.nix
   '';
@@ -19,7 +19,7 @@ in {
       WorkingDirectory = "/run/wings";
       LimitNOFILE = 4096;
       PIDFile = "/run/wings/daemon.pid";
-      ExecStart = "/usr/bin/env sh -c '/usr/bin/env mkdir /run/wings; /usr/bin/env cat /etc/pterodactyl/config.yml > /run/wings/config.yml; ${wingsBinary}/bin/wings --config /run/wings/config.yml'";
+      ExecStart = "${lib.getExe pkgs.bash} -c '/usr/bin/env mkdir /run/wings; /usr/bin/env cat /etc/pterodactyl/config.yml > /run/wings/config.yml; ${wingsBinary}/bin/wings --config /run/wings/config.yml'";
       Restart = "on-failure";
       RestartSec = "5s";
     };
