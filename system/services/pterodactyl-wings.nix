@@ -24,6 +24,6 @@ in {
       RestartSec = "5s";
     };
     wantedBy = ["multi-user.target"];
-    path = [ pkgs.uutils-coreutils-noprefix]
+    path = [ pkgs.uutils-coreutils-noprefix];
   };
 }
