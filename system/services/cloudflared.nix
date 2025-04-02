@@ -15,6 +15,9 @@
         "Wings_MCServer" = {
           credentialsFile = "${config.sops.secrets.cloudflared-creds.path}";
           default = "http_status:404";
+          ingress = {
+            "wings.greysilly7.xyz" = "http://127.0.0.1:8080";
+          }
         };
       };
     };
