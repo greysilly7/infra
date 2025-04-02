@@ -31,4 +31,13 @@ in {
     wantedBy = ["multi-user.target"];
     path = [pkgs.uutils-coreutils-noprefix pkgs.su];
   };
+
+  users.users.pterodactyl = {
+    isSystemUser = true;
+    group = "pterodactyl";
+    home = "/var/lib/pterodactyl";
+    createHome = true;
+    extraGroups = [ "docker" ];
+  };
+  users.groups.pterodactyl = {};
 }
