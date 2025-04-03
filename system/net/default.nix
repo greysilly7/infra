@@ -8,7 +8,7 @@
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager = {
       enable = true;
-      unmanaged = ["docker0"];
+      unmanaged = ["docker0" "pterodactyl0"];
       # dns = "none";
       wifi = {
         macAddress = "random";
@@ -19,6 +19,7 @@
       enable = true;
       allowPing = false;
       logReversePathDrops = true;
+      trustedInterfaces = ["docker0" "pterodactyl0"];
     };
   };
 
