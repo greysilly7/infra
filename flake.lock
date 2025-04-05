@@ -202,11 +202,11 @@
     "jankclient": {
       "flake": false,
       "locked": {
-        "lastModified": 1743608946,
-        "narHash": "sha256-o7Y6q3P6FtH3LOhAq5xLtjmAQZuzYW4WBsvGEuj0lLM=",
+        "lastModified": 1743802389,
+        "narHash": "sha256-jn3WzwY389y03gmDgDYS5ivtM47kfZ1UEiEfn91WlcY=",
         "owner": "mathman05",
         "repo": "jankclient",
-        "rev": "ea7769ce85e16d4058c9a5caedeac2b5bfdc9b3b",
+        "rev": "28ac2974e8543908e4ee88371aa0e0c91a0d9586",
         "type": "github"
       },
       "original": {
@@ -296,11 +296,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1743448293,
-        "narHash": "sha256-bmEPmSjJakAp/JojZRrUvNcDX2R5/nuX6bm+seVaGhs=",
+        "lastModified": 1743583204,
+        "narHash": "sha256-F7n4+KOIfWrwoQjXrL2wD9RhFYLs2/GGe/MQY1sSdlE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "77b584d61ff80b4cef9245829a6f1dfad5afdfa3",
+        "rev": "2c8d3f48d33929642c1c12cd243df4cc7d2ce434",
         "type": "github"
       },
       "original": {
@@ -448,11 +448,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1743604509,
-        "narHash": "sha256-Hf5aYGP3hP+uNbcd4NrEMUAR+1o518uGzoeVyMzzJwo=",
+        "lastModified": 1743756170,
+        "narHash": "sha256-2b11EYa08oqDmF3zEBLkG1AoNn9rB1k39ew/T/mSvbU=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "4521de68fba1a36fae8caebce3d6e047179661f7",
+        "rev": "cff8437c5fe8c68fc3a840a21bf1f4dc801da40d",
         "type": "github"
       },
       "original": {
