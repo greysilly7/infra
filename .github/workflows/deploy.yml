@@ -1,0 +1,80 @@
+name: Deploy Config
+
+on:
+  push:
+    branches:
+      - "main"
+  check_suite:
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  get-hosts:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Tailscale
+        uses: tailscale/github-action@main
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
+      - name: Filter online `mcserv` and `greyserver`
+        id: set-matrix
+        run: |
+          json=$(tailscale status --json)
+          hosts=$(echo "$json" | jq -r '
+            .Peer | to_entries[] 
+            | select(.value.Online == true and (.value.HostName == "mcserv" or .value.HostName == "greyserver")) 
+            | .value.HostName
+          ')
+          host_array=$(echo "$hosts" | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "matrix=$host_array" >> $GITHUB_OUTPUT
+
+  deploy:
+    needs: get-hosts
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        host: ${{ fromJson(needs.get-hosts.outputs.matrix) }}
+
+    steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
+
+      - name: Checkout repository
+        uses: actions/checkout@main
+
+      - name: Tailscale
+        uses: tailscale/github-action@main
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+          if_key_exists: fail
+
+      - name: Build and deploy to ${{ matrix.host }}
+        run: |
+          set -euxo pipefail
+          nix run github:serokell/deploy-rs -- --targets .#${{ matrix.host }}

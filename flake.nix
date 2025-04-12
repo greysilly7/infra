@@ -39,6 +39,8 @@
     #   url = "github:greysilly7/jankwrapper";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
   outputs = inputs @ {
@@ -58,6 +60,17 @@
       # lix = inputs.lix-module.nixosModules.default;
       homix = import ./modules/homix;
     };
+    deploy.nodes = {
+      greyserver = {
+        hostname = "greyserver";
+        profiles.system = {
+          user = "root";
+          path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.greyserver;
+        };
+      };
+    };
     formatter.x86_64-linux = pkgs.alejandra;
+
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
   };
 }
