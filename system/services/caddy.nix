@@ -44,6 +44,20 @@
 
   caddyHost = vh: ''
     ${vh.host} {
+      @options {
+        method OPTIONS
+      }
+      handle @options {
+        header Access-Control-Allow-Origin *
+        header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+        header Access-Control-Allow-Headers "Authorization, Content-Type"
+        header Access-Control-Allow-Credentials true
+        header Access-Control-Max-Age "1728000"
+        header Content-Type "text/plain; charset=utf-8"
+        header Content-Length "0"
+        respond "" 204
+      }
+
       reverse_proxy http://127.0.0.1:${vh.port} {
         header_up Host {host}
         header_up X-Real-IP {remote}
@@ -59,24 +73,12 @@
 
       header {
         Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
+        Content-Security-Policy-Report-Only "script-src 'self' https://jankclient.greysilly7.xyz"
+        Access-Control-Allow-Origin *
       }
 
       log {
         output file /var/log/caddy/${vh.host}.log
-      }
-
-      @options {
-        method OPTIONS
-      }
-      handle @options {
-        header Access-Control-Allow-Origin *
-        header Access-Control-Allow-Methods *
-        header Access-Control-Allow-Headers "Authorization, Content-Type, *"
-        header Access-Control-Allow-Credentials true
-        header Access-Control-Max-Age "1728000"
-        header Content-Type "text/plain; charset=utf-8"
-        header Content-Length "0"
-        respond "" 204
       }
     }
   '';
@@ -122,15 +124,15 @@
         method OPTIONS
       }
       handle @options {
-        header Access-Control-Allow-Origin "*"
-        header Access-Control-Allow-Methods "*"
-        header Access-Control-Allow-Headers "*"
+        header Access-Control-Allow-Origin *
+        header Access-Control-Allow-Methods *
+        header Access-Control-Allow-Headers "Authorization, Content-Type, *"
+        header Access-Control-Allow-Credentials true
         header Access-Control-Max-Age "1728000"
         header Content-Type "text/plain; charset=utf-8"
         header Content-Length "0"
         respond "" 204
-      }
-    }
+      }    }
 
     ${lib.concatStringsSep "\n\n" (map caddyHost virtualHosts)}
   '';
