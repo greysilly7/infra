@@ -4,7 +4,7 @@
     users = {
       root = {
         password = "temp";
-        openssh.authorizedKeys = [
+        openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICrFiy0QMKHdyucTJTC3OJXO9EWyqf1IqYB1zWipTI+1 github-actions-deploy"
         ];
       };
