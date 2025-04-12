@@ -26,6 +26,7 @@ in {
       ${pkgs.coreutils}/bin/cp ${writableDir}/gitfiles/src/webpage/instances.json ${writableDir}
       ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles --frozen-lockfile --backend=hardlink --verbose
       ${lib.getExe pkgs.bun} gulp --cwd ${writableDir}/gitfiles --swc
+      ${pkgs.sed}/bin/sed -i '/gulp.task("commit",/,/});/d' ${writableDir}/gitfiles/gulpfile.cjs
     '';
 
     script = "${lib.getExe pkgs.bun} ${writableDir}/gitfiles/dist/index.js";
