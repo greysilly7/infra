@@ -25,7 +25,7 @@ in {
       ${lib.getExe pkgs.rsync} -a ${inputs.jankclient}/* ${writableDir}/gitfiles
       ${pkgs.uutils-coreutils-noprefix}/bin/cp ${writableDir}/gitfiles/src/webpage/instances.json ${writableDir}
       ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles --frozen-lockfile --backend=hardlink --verbose
-      ${pkgs.uutils-coreutils-noprefix}/bin/sed -i '/gulp.task("commit",/,/});/d' ${writableDir}/gitfiles/gulpfile.cjs
+      ${lib.getExe pkgs.gnused} -i '/gulp.task("commit",/,/});/d' ${writableDir}/gitfiles/gulpfile.cjs
       # Generate a random value and populate the file
       RANDOM_VALUE=$(${pkgs.uutils-coreutils-noprefix}/bin/head -c 16 /dev/urandom | ${pkgs.uutils-coreutils-noprefix}/bin/base64)
       ${pkgs.uutils-coreutils-noprefix}/bin/mkdir -p ${writableDir}/gitfiles/dist/webpage
