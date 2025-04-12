@@ -68,6 +68,13 @@
           path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.greyserver;
         };
       };
+mcserv = {
+        hostname = "mcserv";
+        profiles.system = {
+          user = "root";
+          path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.mcserv;
+        };
+      };
     };
     formatter.x86_64-linux = pkgs.alejandra;
 
