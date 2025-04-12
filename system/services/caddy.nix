@@ -73,7 +73,7 @@
 
       header {
         Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
-        Content-Security-Policy-Report-Only "script-src 'self' https://jankclient.greysilly7.xyz"
+        Content-Security-Policy-Report-Only "script-src 'self' https://jankclient.greysilly7.xyz https://static.cloudflareinsights.com"
         Access-Control-Allow-Origin *
       }
 
