@@ -27,11 +27,12 @@ in {
       ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles --frozen-lockfile --backend=hardlink --verbose
       ${lib.getExe pkgs.gnused} -i '/gulp.task("commit",/,/});/d' ${writableDir}/gitfiles/gulpfile.cjs
       ${lib.getExe pkgs.gnused} -i 's/, "commit"//g' ${writableDir}/gitfiles/gulpfile.cjs
+      ${lib.getExe pkgs.bun} gulp --cwd ${writableDir}/gitfiles --swc
       # Generate a random value and populate the file
       RANDOM_VALUE=$(${pkgs.uutils-coreutils-noprefix}/bin/head -c 16 /dev/urandom | ${pkgs.uutils-coreutils-noprefix}/bin/base64)
       ${pkgs.uutils-coreutils-noprefix}/bin/mkdir -p ${writableDir}/gitfiles/dist/webpage
       echo "$RANDOM_VALUE" > ${writableDir}/gitfiles/dist/webpage/getupdates
-      ${lib.getExe pkgs.bun} gulp --cwd ${writableDir}/gitfiles --swc
+
     '';
 
     script = "${lib.getExe pkgs.bun} ${writableDir}/gitfiles/dist/index.js";
