@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
-    continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@main
@@ -84,3 +83,4 @@ jobs:
         run: |
           set -euxo pipefail
           nix run github:serokell/deploy-rs -- --targets .#${{ matrix.host }}
+        continue-on-error: true
