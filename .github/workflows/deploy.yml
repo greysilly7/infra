@@ -83,4 +83,4 @@ jobs:
         run: |
           set -euxo pipefail
           nix run github:serokell/deploy-rs -- --targets .#${{ matrix.host }}
-                continue-on-error: ${{ matrix.host == 'mcserv' || matrix.host == 'greyserver' }}
+        continue-on-error: ${{ matrix.host == 'mcserv' || matrix.host == 'greyserver' }}
