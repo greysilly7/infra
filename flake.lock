@@ -238,11 +238,11 @@
     "jankclient": {
       "flake": false,
       "locked": {
-        "lastModified": 1744642261,
-        "narHash": "sha256-0uLKQbR+xb4GOQ75a0xlt8V92SSxZm+N7/Yu1jY5Gz0=",
+        "lastModified": 1744737471,
+        "narHash": "sha256-zTnvsS2ydA6goeqqQw6oJgQwya3XysZSosGIeZQL96c=",
         "owner": "mathman05",
         "repo": "jankclient",
-        "rev": "bdbee6894d98fa1232e6505e90cdd680ec285074",
+        "rev": "8bc009dc196245c52dcdb81c6d2bb640eeeab6fa",
         "type": "github"
       },
       "original": {
@@ -501,11 +501,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744518500,
-        "narHash": "sha256-lv52pnfiRGp5+xkZEgWr56DWiRgkMFXpiGba3eJ3krE=",
+        "lastModified": 1744669848,
+        "narHash": "sha256-pXyanHLUzLNd3MX9vsWG+6Z2hTU8niyphWstYEP3/GU=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "7e147a1ae90f0d4a374938cdc3df3cdaecb9d388",
+        "rev": "61154300d945f0b147b30d24ddcafa159148026a",
         "type": "github"
       },
       "original": {
