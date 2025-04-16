@@ -48,9 +48,12 @@
         method OPTIONS
       }
       handle @options {
+        # Allow requests from any origin for preflight
         header Access-Control-Allow-Origin *
         header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-        header Access-Control-Allow-Headers "Authorization, Content-Type, *" // Allow any header
+        # Allow any headers requested by the client
+        header Access-Control-Allow-Headers *
+        # Allow credentials (like cookies) - Note: This often requires Allow-Origin to be a specific domain, not '*'
         header Access-Control-Allow-Credentials true
         header Access-Control-Max-Age "1728000"
         header Content-Type "text/plain; charset=utf-8"
@@ -73,7 +76,9 @@
 
       header {
         Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
-        Content-Security-Policy "script-src 'self' https://jankclient.greysilly7.xyz https://static.cloudflareinsights.com"
+        # Relaxed CSP for jankclient: Allow scripts from self, jankclient, cloudflare, and connections to any host (*)
+        Content-Security-Policy "script-src 'self' https://jankclient.greysilly7.xyz https://static.cloudflareinsights.com; connect-src *;"
+        # Allow actual requests from any origin
         Access-Control-Allow-Origin *
       }
 
