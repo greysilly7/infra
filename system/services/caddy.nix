@@ -43,13 +43,6 @@
   ];
 
   caddyHost = vh: ''
-    ${vh.host} {
-      ${
-      if vh.host == "api-spacebar.greysilly7.xyz"
-      then "import cors"
-      else ""
-    }
-
       reverse_proxy http://127.0.0.1:${vh.port} {
         header_up Host {host}
         header_up X-Real-IP {remote}
@@ -71,7 +64,7 @@
         Content-Security-Policy "${
       if vh.host == "jankclient.greysilly7.xyz"
       # Allow unsafe inline scripts/eval and connections to self, specific spacebar services, and any external domain for jankclient
-      then "script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' *;"
+      then "script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' *.${rootSBDomain} *;"
       # Default stricter policy for other hosts
       else "script-src 'self'; connect-src 'self';" # Added connect-src 'self' for consistency
     }"
