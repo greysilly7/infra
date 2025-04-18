@@ -48,11 +48,14 @@
         method OPTIONS
       }
       handle @options {
-        # Respond to OPTIONS preflight requests
-        header Content-Type "text/plain; charset=utf-8"
+        # Respond to OPTIONS preflight requests, including CORS headers
+        header Access-Control-Allow-Origin *
+        header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+        header Access-Control-Allow-Headers "Authorization, Content-Type, *"
+        header Access-Control-Allow-Credentials true
+        header Access-Control-Max-Age "1728000"
         header Content-Length "0"
         respond "" 204
-        # Note: CORS headers are now applied globally below
       }
 
       reverse_proxy http://127.0.0.1:${vh.port} {
