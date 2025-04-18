@@ -76,7 +76,11 @@
 
       header {
         Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
-        Content-Security-Policy "script-src 'self';"
+        Content-Security-Policy "${
+      if vh.host == "jankclient.greysilly7.xyz"
+      then "script-src 'self' 'unsafe-inline' 'unsafe-eval';"
+      else "script-src 'self';"
+    }"
       }
 
       log {
