@@ -13,14 +13,12 @@ in {
       #!${pkgs.bash}/bin/bash
 
       # Configuration
-      # !!! SECURITY WARNING: Hardcoding secrets is not recommended. !!!
-      # Consider using sops-nix or another secrets management solution.
-      API_TOKEN="${config.sops.secrets.cftoken.path}" # Replace with your Cloudflare API token
-      ZONE_NAME="greysilly7.xyz"                           # Replace with your domain name
-      RECORD_NAME_A="greysilly7.xyz"                       # Replace with the DNS record for IPv4
-      RECORD_NAME_AAAA="greysilly7.xyz"                    # Replace with the DNS record for IPv6
-      PROXIED_A=true                                       # Set to true or false for IPv4 record
-      PROXIED_AAAA=true                                    # Set to true or false for IPv6 record
+      API_TOKEN="${config.sops.secrets.cftoken.path}"
+      ZONE_NAME="greysilly7.xyz"
+      RECORD_NAME_A="greysilly7.xyz"
+      RECORD_NAME_AAAA="greysilly7.xyz"
+      PROXIED_A=true
+      PROXIED_AAAA=true
 
       # Get the current public IPv4 and IPv6 addresses
       CURRENT_IPv4=$(${lib.getExe pkgs.curl} -s https://ipv4.myip.wtf/)
@@ -98,8 +96,6 @@ in {
     # Wait for network to be online
     after = ["network-online.target"];
     wants = ["network-online.target"];
-    # Add a restart policy to ensure the service runs reliably
-    restart = "on-failure";
   };
 
   systemd.timers.custom-dyndns = {
