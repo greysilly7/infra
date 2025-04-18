@@ -3,9 +3,7 @@
   config,
   lib,
   ...
-}: let
-  # Removed dyndnsScript variable
-in {
+}: {
   systemd.services.custom-dyndns = {
     description = "Custom Cloudflare Dynamic DNS Updater";
     # Removed preStart command
@@ -13,7 +11,7 @@ in {
       #!${pkgs.bash}/bin/bash
 
       # Configuration
-      API_TOKEN="${config.sops.secrets.cftoken.path}"
+      API_TOKEN=$(cat "${config.sops.secrets.cftoken.path}")
       ZONE_NAME="greysilly7.xyz"
       RECORD_NAME_A="greysilly7.xyz"
       RECORD_NAME_AAAA="greysilly7.xyz"
