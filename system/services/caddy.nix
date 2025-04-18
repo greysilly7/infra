@@ -89,7 +89,7 @@
 
     (cors) {
       @cors_preflight method OPTIONS
-      @cors header Origin {re.Match('.*')} # Match any Origin header
+      @cors header Origin
 
       handle @cors_preflight {
         # Remove potential duplicate header from backend first
@@ -100,8 +100,7 @@
         header Access-Control-Allow-Headers *
         header Access-Control-Max-Age "86400" # 24 hours
         respond "" 204
-        # Prevent further processing for preflight
-        # request_body_hiding
+        request_body_hiding
       }
 
       handle @cors {
