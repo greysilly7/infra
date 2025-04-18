@@ -81,7 +81,6 @@
     {
       email greysilly7@gmail.com
       acme_ca https://acme-v02.api.letsencrypt.org/directory
-      experimental_http3
     }
 
     (cors) {
