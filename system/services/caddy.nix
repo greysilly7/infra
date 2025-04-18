@@ -43,6 +43,7 @@
   ];
 
   caddyHost = vh: ''
+    ${vh.host} {
       reverse_proxy http://127.0.0.1:${vh.port} {
         header_up Host {host}
         header_up X-Real-IP {remote}
