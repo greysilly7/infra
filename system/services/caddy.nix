@@ -44,20 +44,6 @@
 
   caddyHost = vh: ''
     ${vh.host} {
-      @options {
-        method OPTIONS
-      }
-      handle @options {
-        # Respond to OPTIONS preflight requests, including relaxed CORS headers
-        header Access-Control-Allow-Origin *
-        header Access-Control-Allow-Methods *
-        header Access-Control-Allow-Headers *
-        header Access-Control-Allow-Credentials true
-        header Access-Control-Max-Age "1728000"
-        header Content-Length "0"
-        respond "" 204
-      }
-
       reverse_proxy http://127.0.0.1:${vh.port} {
         header_up Host {host}
         header_up X-Real-IP {remote}
@@ -139,20 +125,6 @@
 
       log {
         output file /var/log/caddy/greysilly7.xyz.log
-      }
-
-      @options {
-        method OPTIONS
-      }
-      handle @options {
-        # Respond to OPTIONS preflight requests - Add relaxed CORS headers here too for consistency
-        header Access-Control-Allow-Origin *
-        header Access-Control-Allow-Methods *
-        header Access-Control-Allow-Headers *
-        header Access-Control-Allow-Credentials true
-        header Access-Control-Max-Age "1728000"
-        header Content-Length "0"
-        respond "" 204
       }
     }
 
