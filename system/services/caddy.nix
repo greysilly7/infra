@@ -51,8 +51,8 @@
         # Allow requests from any origin for preflight
         header Access-Control-Allow-Origin *
         header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-        # Allow any headers requested by the client
-        header Access-Control-Allow-Headers *
+        # Allow specific common headers and any others requested by the client
+        header Access-Control-Allow-Headers "Authorization, Content-Type, *"
         # Allow credentials (like cookies) - Note: This often requires Allow-Origin to be a specific domain, not '*'
         header Access-Control-Allow-Credentials true
         header Access-Control-Max-Age "1728000"
@@ -76,10 +76,10 @@
 
       header {
         Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
-        # Relaxed CSP for jankclient: Allow scripts from self, jankclient, cloudflare, and connections to any host (*)
-        Content-Security-Policy "script-src 'self' https://jankclient.greysilly7.xyz https://static.cloudflareinsights.com; connect-src *;"
-        # Allow actual requests from any origin
-        Access-Control-Allow-Origin *
+        # Simplified CSP: Allow scripts only from self. Adjust per-host if needed.
+        Content-Security-Policy "script-src 'self';"
+        # CORS origin handled by @options block
+        # Access-Control-Allow-Origin *
       }
 
       log {
