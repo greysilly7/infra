@@ -135,6 +135,7 @@
         header Content-Length "0"
         respond "" 204
       }
+    } // <-- Add closing brace here
 
     ${lib.concatStringsSep "\n\n" (map caddyHost virtualHosts)}
   '';
