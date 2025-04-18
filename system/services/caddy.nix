@@ -76,10 +76,7 @@
 
       header {
         Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
-        # Simplified CSP: Allow scripts only from self. Adjust per-host if needed.
         Content-Security-Policy "script-src 'self';"
-        # CORS origin handled by @options block
-        # Access-Control-Allow-Origin *
       }
 
       log {
@@ -137,7 +134,7 @@
         header Content-Type "text/plain; charset=utf-8"
         header Content-Length "0"
         respond "" 204
-      }    }
+      }
 
     ${lib.concatStringsSep "\n\n" (map caddyHost virtualHosts)}
   '';
