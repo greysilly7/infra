@@ -48,10 +48,10 @@
         method OPTIONS
       }
       handle @options {
-        # Respond to OPTIONS preflight requests, including CORS headers
+        # Respond to OPTIONS preflight requests, including relaxed CORS headers
         header Access-Control-Allow-Origin *
-        header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-        header Access-Control-Allow-Headers "Authorization, Content-Type, *"
+        header Access-Control-Allow-Methods *
+        header Access-Control-Allow-Headers *
         header Access-Control-Allow-Credentials true
         header Access-Control-Max-Age "1728000"
         header Content-Length "0"
@@ -72,10 +72,10 @@
     }
 
       header {
-        # CORS Headers (apply to all responses)
+        # CORS Headers (apply to all responses) - Relaxed
         Access-Control-Allow-Origin *
-        Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-        Access-Control-Allow-Headers "Authorization, Content-Type, *"
+        Access-Control-Allow-Methods *
+        Access-Control-Allow-Headers *
         Access-Control-Allow-Credentials true
         Access-Control-Max-Age "1728000"
 
@@ -123,10 +123,10 @@
       }
 
       header {
-        # CORS Headers (apply to all responses)
+        # CORS Headers (apply to all responses) - Already relaxed
         Access-Control-Allow-Origin *
         Access-Control-Allow-Methods *
-        Access-Control-Allow-Headers "Authorization, Content-Type, *"
+        Access-Control-Allow-Headers *
         Access-Control-Allow-Credentials true
         Access-Control-Max-Age "1728000"
 
@@ -145,11 +145,14 @@
         method OPTIONS
       }
       handle @options {
-        # Respond to OPTIONS preflight requests
-        header Content-Type "text/plain; charset=utf-8"
+        # Respond to OPTIONS preflight requests - Add relaxed CORS headers here too for consistency
+        header Access-Control-Allow-Origin *
+        header Access-Control-Allow-Methods *
+        header Access-Control-Allow-Headers *
+        header Access-Control-Allow-Credentials true
+        header Access-Control-Max-Age "1728000"
         header Content-Length "0"
         respond "" 204
-        # Note: CORS headers are now applied globally above
       }
     }
 
