@@ -48,17 +48,11 @@
         method OPTIONS
       }
       handle @options {
-        # Allow requests from any origin for preflight
-        header Access-Control-Allow-Origin *
-        header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-        # Allow specific common headers and any others requested by the client
-        header Access-Control-Allow-Headers "Authorization, Content-Type, *"
-        # Allow credentials (like cookies) - Note: This often requires Allow-Origin to be a specific domain, not '*'
-        header Access-Control-Allow-Credentials true
-        header Access-Control-Max-Age "1728000"
+        # Respond to OPTIONS preflight requests
         header Content-Type "text/plain; charset=utf-8"
         header Content-Length "0"
         respond "" 204
+        # Note: CORS headers are now applied globally below
       }
 
       reverse_proxy http://127.0.0.1:${vh.port} {
@@ -75,6 +69,14 @@
     }
 
       header {
+        # CORS Headers (apply to all responses)
+        Access-Control-Allow-Origin *
+        Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+        Access-Control-Allow-Headers "Authorization, Content-Type, *"
+        Access-Control-Allow-Credentials true
+        Access-Control-Max-Age "1728000"
+
+        # Security Headers
         Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
         Content-Security-Policy "${
       if vh.host == "jankclient.greysilly7.xyz"
@@ -118,6 +120,14 @@
       }
 
       header {
+        # CORS Headers (apply to all responses)
+        Access-Control-Allow-Origin *
+        Access-Control-Allow-Methods *
+        Access-Control-Allow-Headers "Authorization, Content-Type, *"
+        Access-Control-Allow-Credentials true
+        Access-Control-Max-Age "1728000"
+
+        # Security Headers
         Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
         Referrer-Policy "origin-when-cross-origin"
         X-Frame-Options "DENY"
@@ -132,14 +142,11 @@
         method OPTIONS
       }
       handle @options {
-        header Access-Control-Allow-Origin *
-        header Access-Control-Allow-Methods *
-        header Access-Control-Allow-Headers "Authorization, Content-Type, *" // Allow any header
-        header Access-Control-Allow-Credentials true
-        header Access-Control-Max-Age "1728000"
+        # Respond to OPTIONS preflight requests
         header Content-Type "text/plain; charset=utf-8"
         header Content-Length "0"
         respond "" 204
+        # Note: CORS headers are now applied globally above
       }
     }
 
