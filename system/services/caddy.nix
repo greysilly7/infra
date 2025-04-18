@@ -44,12 +44,6 @@
 
   caddyHost = vh: ''
     ${vh.host} {
-      ${
-      if vh.host == "api-spacebar.greysilly7.xyz"
-      then "import cors"
-      else ""
-    }
-
       reverse_proxy http://127.0.0.1:${vh.port} {
         header_up Host {host}
         header_up X-Real-IP {remote}
@@ -63,14 +57,16 @@
       else ""
     }
 
+      import security_headers
+
+      # Define specific headers *after* importing the snippet to allow overrides
       header {
-        # Security Headers
-        Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
+        # Conditional Content-Security-Policy (overrides the default if needed)
         Content-Security-Policy "${
       if vh.host == "jankclient.greysilly7.xyz"
       # Allow unsafe inline scripts and eval for jankclient, and ensure 'self' covers external scripts from the same origin
       then "script-src 'self' 'unsafe-inline' 'unsafe-eval';"
-      # Default stricter policy for other hosts
+      # Default stricter policy for other hosts (can be removed if snippet default is sufficient)
       else "script-src 'self';"
     }"
       }
@@ -101,7 +97,6 @@
         header Access-Control-Max-Age "86400" # 24 hours
         respond "" 204
         # Prevent further processing for preflight
-        # request_body_hiding
       }
 
       handle @cors {
@@ -114,10 +109,23 @@
       }
     }
 
+    (security_headers) {
+      header {
+        # Security Headers
+        Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
+        X-Frame-Options "DENY"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        Permissions-Policy "interest-cohort=()"
+      }
+    }
+
     greysilly7.xyz {
       root * ${inputs.greysilly7-xyz}
       encode zstd gzip
       file_server
+
+      import security_headers
 
       @spacebar {
         path /.well-known/spacebar
@@ -132,14 +140,6 @@
 
       handle_path /jankwrapper* {
         reverse_proxy http://127.0.0.1:7878
-      }
-
-      header {
-        # Security Headers
-        Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
-        Referrer-Policy "origin-when-cross-origin"
-        X-Frame-Options "DENY"
-        X-Content-Type-Options "nosniff"
       }
 
       log {
