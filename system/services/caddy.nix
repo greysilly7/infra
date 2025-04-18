@@ -78,7 +78,9 @@
         Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
         Content-Security-Policy "${
       if vh.host == "jankclient.greysilly7.xyz"
-      then "script-src 'self' 'unsafe-inline' 'unsafe-eval';"
+      # Allow unsafe inline scripts and eval for jankclient
+      then "script-src 'self' 'unsafe-eval'; script-src-elem 'self' 'unsafe-inline';"
+      # Default stricter policy for other hosts
       else "script-src 'self';"
     }"
       }
