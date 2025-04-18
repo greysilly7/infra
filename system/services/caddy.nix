@@ -58,15 +58,6 @@
     }
 
       header {
-        # Remove ACAO header from backend response first to prevent duplication
-        -Access-Control-Allow-Origin
-
-        # CORS Headers (apply to all responses) - Relaxed
-        Access-Control-Allow-Origin *
-        Access-Control-Allow-Methods *
-        Access-Control-Allow-Headers *
-        Access-Control-Max-Age "1728000"
-
         # Security Headers
         Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
         Content-Security-Policy "${
@@ -111,15 +102,6 @@
       }
 
       header {
-        # Remove ACAO header from backend response first (if applicable, though less likely here)
-        -Access-Control-Allow-Origin
-
-        # CORS Headers (apply to all responses) - Already relaxed
-        Access-Control-Allow-Origin *
-        Access-Control-Allow-Methods *
-        Access-Control-Allow-Headers *
-        Access-Control-Max-Age "1728000"
-
         # Security Headers
         Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
         Referrer-Policy "origin-when-cross-origin"
