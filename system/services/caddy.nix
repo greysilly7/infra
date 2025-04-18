@@ -58,6 +58,9 @@
     }
 
       header {
+        # Remove ACAO header from backend response first to prevent duplication
+        -Access-Control-Allow-Origin
+
         # CORS Headers (apply to all responses) - Relaxed
         Access-Control-Allow-Origin *
         Access-Control-Allow-Methods *
@@ -109,6 +112,9 @@
       }
 
       header {
+        # Remove ACAO header from backend response first (if applicable, though less likely here)
+        -Access-Control-Allow-Origin
+
         # CORS Headers (apply to all responses) - Already relaxed
         Access-Control-Allow-Origin *
         Access-Control-Allow-Methods *
