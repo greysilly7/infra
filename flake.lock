@@ -238,11 +238,11 @@
     "jankclient": {
       "flake": false,
       "locked": {
-        "lastModified": 1745958002,
-        "narHash": "sha256-hE7qehCj6SQrJttdfx8nmpjnAeYICeJMO/R/hOTh1MQ=",
+        "lastModified": 1746102260,
+        "narHash": "sha256-aPkx9Hxwy5k5Jj/wR9z+CGGpBj9MXwRpC32Rc3njIWE=",
         "owner": "mathman05",
         "repo": "jankclient",
-        "rev": "ea8d9978a62bceb53ffda9e40067995059978c4f",
+        "rev": "2bf44e3c50852f2a1fc31001610af4d9a400917a",
         "type": "github"
       },
       "original": {
