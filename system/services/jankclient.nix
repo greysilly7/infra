@@ -18,32 +18,28 @@ in {
     };
 
     preStart = ''
-      whoami
       ${pkgs.uutils-coreutils-noprefix}/bin/mkdir -p ${writableDir}/gitfiles
       ${pkgs.uutils-coreutils-noprefix}/bin/chown -R jankclient:jankclient ${writableDir}/gitfiles
       ${pkgs.uutils-coreutils-noprefix}/bin/chmod -R 755 ${writableDir}
       ${lib.getExe pkgs.rsync} -a ${inputs.jankclient}/* ${writableDir}/gitfiles
       ${pkgs.uutils-coreutils-noprefix}/bin/cp ${writableDir}/gitfiles/src/webpage/instances.json ${writableDir}
       ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles --frozen-lockfile --backend=hardlink --verbose
-      ${lib.getExe pkgs.gnused} -i '/gulp.task("commit",/,/});/d' ${writableDir}/gitfiles/gulpfile.cjs
-      ${lib.getExe pkgs.gnused} -i 's/, "commit"//g' ${writableDir}/gitfiles/gulpfile.cjs
-      ${lib.getExe pkgs.bun} gulp --cwd ${writableDir}/gitfiles --swc
-      # Generate a random value and populate the file
       RANDOM_VALUE=$(${pkgs.uutils-coreutils-noprefix}/bin/head -c 16 /dev/urandom | ${pkgs.uutils-coreutils-noprefix}/bin/base64)
-      ${pkgs.uutils-coreutils-noprefix}/bin/mkdir -p ${writableDir}/gitfiles/dist/webpage
-      echo "$RANDOM_VALUE" > ${writableDir}/gitfiles/dist/webpage/getupdates
-
+      ${pkgs.uutils-coreutils-noprefix}/bin/sed -i \
+        's|const revision = .*|const revision = "'"$RANDOM_VALUE"'";|' \
+        ${writableDir}/gitfiles/build.ts
+      ${lib.getExe pkgs.bun} run bunbuild --cwd ${writableDir}/gitfiles
     '';
 
     script = "${lib.getExe pkgs.bun} ${writableDir}/gitfiles/dist/index.js";
-    path = [pkgs.nodejs_latest pkgs.bun pkgs.git];
+    path = [pkgs.bun pkgs.git];
 
     serviceConfig = {
       WorkingDirectory = "${writableDir}/gitfiles";
       Restart = "always";
       User = "jankclient";
       Group = "jankclient";
-      EnvironmentFile = config.sops.secrets.jankwrapper_secret_env.path; # Path to environment file for secrets
+      EnvironmentFile = config.sops.secrets.jankwrapper_secret_env.path;
     };
   };
 
