@@ -46,8 +46,6 @@ in {
         Environment = [
           "DATABASE=postgres://spacebar@127.0.0.1:5432/spacebar"
           "STORAGE_LOCATION=/var/lib/spacebar"
-          # "LOG_REQUESTS='-'"
-          #"DB_LOGGING='true'"
         ];
       };
     });

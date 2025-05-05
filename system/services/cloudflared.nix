@@ -3,7 +3,9 @@
   config,
   lib,
   ...
-}: {
+}: let
+zone = "greysilly7.xyz";
+in{
   systemd.services.custom-dyndns = {
     description = "Custom Cloudflare Dynamic DNS Updater";
     # Removed preStart command
@@ -12,9 +14,9 @@
 
       # Configuration
       API_TOKEN=$(cat "${config.sops.secrets.cftoken.path}")
-      ZONE_NAME="greysilly7.xyz"
-      RECORD_NAME_A="greysilly7.xyz"
-      RECORD_NAME_AAAA="greysilly7.xyz"
+      ZONE_NAME="${zone}"
+      RECORD_NAME_A="${zone}"
+      RECORD_NAME_AAAA="${zone}"
       PROXIED_A=true
       PROXIED_AAAA=true
 
@@ -84,14 +86,11 @@
           echo "No update needed for AAAA record. Current IPv6 is still ''${CURRENT_IPv6}."
       fi
     '';
-    # Provide necessary packages in the service's PATH
-    path = [pkgs.bash pkgs.curl pkgs.jq pkgs.uutils-coreutils-noprefix]; # coreutils might not be strictly needed now
-    # Run as a one-shot service
+    path = [pkgs.bash pkgs.curl pkgs.jq pkgs.uutils-coreutils-noprefix];
     serviceConfig = {
       Type = "oneshot";
-      User = "root"; # Or another user if preferred, ensure permissions
+      User = "root";
     };
-    # Wait for network to be online
     after = ["network-online.target"];
     wants = ["network-online.target"];
   };
@@ -100,9 +99,7 @@
     description = "Run Custom Cloudflare DDNS Updater periodically";
     wantedBy = ["timers.target"];
     timerConfig = {
-      # Run 5 minutes after boot
       OnBootSec = "5min";
-      # Run every 15 minutes thereafter
       OnUnitActiveSec = "15min";
       Unit = "custom-dyndns.service";
     };

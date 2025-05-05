@@ -59,21 +59,17 @@
 
       import security_headers
 
-      # Define specific headers *after* importing the snippet to allow overrides
       header {
         # Conditional Content-Security-Policy (overrides the default if needed)
         Content-Security-Policy "${
       if vh.host == "jankclient.greysilly7.xyz"
       then
-        # Allow unsafe inline/eval, connections to self/spacebar/any, hCaptcha, and reCAPTCHA for jankclient
         "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.hcaptcha.com https://*.hcaptcha.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; frame-src https://*.hcaptcha.com https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/; connect-src 'self' *.${rootSBDomain} * https://*.hcaptcha.com;"
       else if vh.host == "vaultwarden.greysilly7.xyz"
       then
-        # Allow Vaultwarden's inline scripts
         "script-src 'self' 'unsafe-inline'; connect-src 'self';"
       else
-        # Default stricter policy for other hosts
-        "script-src 'self'; connect-src 'self';" # Added connect-src 'self' for consistency
+        "script-src 'self'; connect-src 'self';"
     }"
       }
 
