@@ -25,7 +25,7 @@ in {
       ${pkgs.uutils-coreutils-noprefix}/bin/cp ${writableDir}/gitfiles/src/webpage/instances.json ${writableDir}
       ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles --frozen-lockfile --backend=hardlink --verbose
       RANDOM_VALUE=$(${pkgs.uutils-coreutils-noprefix}/bin/head -c 16 /dev/urandom | ${pkgs.uutils-coreutils-noprefix}/bin/base64)
-      ${pkgs.uutils-coreutils-noprefix}/bin/sed -i \
+      ${lib.getExe pkgs.gnused} -i \
         's|const revision = .*|const revision = "'"$RANDOM_VALUE"'";|' \
         ${writableDir}/gitfiles/build.ts
       ${lib.getExe pkgs.bun} run bunbuild --cwd ${writableDir}/gitfiles
