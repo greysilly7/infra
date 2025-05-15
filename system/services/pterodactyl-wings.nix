@@ -24,7 +24,7 @@ in {
       WorkingDirectory = "/run/wings";
       LimitNOFILE = 4096;
       PIDFile = "/run/wings/daemon.pid";
-      ExecStart = "${lib.getExe pkgs.bash} -c '/usr/bin/env mkdir -p /run/wings; cat ${config.sops.secrets.wings.path} >> /run/wings/config.yml; ${wingsBinary}/bin/wings --config /run/wings/config.yml'";
+      ExecStart = "${lib.getExe pkgs.bash} -c '${pkgs.uutils-coreutils-noprefix}/bin/mkdir -p /run/wings; ${pkgs.uutils-coreutils-noprefix}/bin/cat ${config.sops.secrets.wings.path} >> /run/wings/config.yml; ${wingsBinary}/bin/wings --config /run/wings/config.yml'";
       Restart = "on-failure";
       RestartSec = "5s";
     };
