@@ -5,7 +5,7 @@
 }: {
   services.postgresql = {
     enable = true; # Enable PostgreSQL service
-    package = pkgs.postgresqlVersions.postgresql_16_jit;
+    package = pkgs.postgresql_16_jit;
     enableTCPIP = true; # Enable TCP/IP connections
 
     ensureDatabases = ["spacebar" "vaultwarden" "iremia"]; # Ensure the "spacebar" database exists
