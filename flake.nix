@@ -14,6 +14,7 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
 
     # Personal Projects
     greysilly7-xyz = {
@@ -58,6 +59,7 @@
       disko = inputs.disko.nixosModules.default;
       sops-nix = inputs.sops-nix.nixosModules.sops;
       # lix = inputs.lix-module.nixosModules.default;
+      facter = inputs.nixos-facter-modules.nixosModules.facter;
       homix = import ./modules/homix;
     };
     deploy.nodes = {
