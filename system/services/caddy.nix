@@ -63,13 +63,10 @@
         # Conditional Content-Security-Policy (overrides the default if needed)
         Content-Security-Policy "${
       if vh.host == "jankclient.greysilly7.xyz"
-      then
-        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.hcaptcha.com https://*.hcaptcha.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; frame-src https://*.hcaptcha.com https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/; connect-src 'self' *.${rootSBDomain} * https://*.hcaptcha.com;"
+      then "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.hcaptcha.com https://*.hcaptcha.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; frame-src https://*.hcaptcha.com https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/; connect-src 'self' *.${rootSBDomain} * https://*.hcaptcha.com;"
       else if vh.host == "vaultwarden.greysilly7.xyz"
-      then
-        "script-src 'self' 'unsafe-inline'; connect-src 'self';"
-      else
-        "script-src 'self'; connect-src 'self';"
+      then "script-src 'self' 'unsafe-inline'; connect-src 'self';"
+      else "script-src 'self'; connect-src 'self';"
     }"
       }
 

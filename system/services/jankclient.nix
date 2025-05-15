@@ -18,17 +18,18 @@ in {
     };
 
     preStart = ''
-      ${pkgs.uutils-coreutils-noprefix}/bin/mkdir -p ${writableDir}/gitfiles
-      ${pkgs.uutils-coreutils-noprefix}/bin/chown -R jankclient:jankclient ${writableDir}/gitfiles
-      ${pkgs.uutils-coreutils-noprefix}/bin/chmod -R 755 ${writableDir}
-      ${lib.getExe pkgs.rsync} -a ${inputs.jankclient}/* ${writableDir}/gitfiles
-      ${pkgs.uutils-coreutils-noprefix}/bin/cp ${writableDir}/gitfiles/src/webpage/instances.json ${writableDir}
-      ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles --frozen-lockfile --backend=hardlink --verbose
-      RANDOM_VALUE=$(${pkgs.uutils-coreutils-noprefix}/bin/head -c 16 /dev/urandom | ${pkgs.uutils-coreutils-noprefix}/bin/base64)
-      ${lib.getExe pkgs.gnused} -i \
-        's|const revision = .*|const revision = "'"$RANDOM_VALUE"'";|' \
-        ${writableDir}/gitfiles/build.ts
-      ${lib.getExe pkgs.bun} run bunBuild --cwd ${writableDir}/gitfiles
+      set -e
+         ${pkgs.uutils-coreutils-noprefix}/bin/mkdir -p ${writableDir}/gitfiles
+         ${pkgs.uutils-coreutils-noprefix}/bin/chown -R jankclient:jankclient ${writableDir}/gitfiles
+         ${pkgs.uutils-coreutils-noprefix}/bin/chmod -R 755 ${writableDir}
+         ${lib.getExe pkgs.rsync} -a ${inputs.jankclient}/. ${writableDir}/gitfiles
+         ${pkgs.uutils-coreutils-noprefix}/bin/cp ${writableDir}/gitfiles/src/webpage/instances.json ${writableDir}
+         ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles --frozen-lockfile --backend=hardlink --verbose
+         RANDOM_VALUE=$(${pkgs.uutils-coreutils-noprefix}/bin/head -c 16 /dev/urandom | ${pkgs.uutils-coreutils-noprefix}/bin/base64)
+         ${lib.getExe pkgs.gnused} -i \
+           's|const revision = .*|const revision = "'"$RANDOM_VALUE"'";|' \
+           ${writableDir}/gitfiles/build.ts
+         ${lib.getExe pkgs.bun} run bunBuild --cwd ${writableDir}/gitfiles
     '';
 
     script = "${lib.getExe pkgs.bun} ${writableDir}/gitfiles/dist/index.js";

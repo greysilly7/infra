@@ -4,8 +4,8 @@
   lib,
   ...
 }: let
-zone = "greysilly7.xyz";
-in{
+  zone = "greysilly7.xyz";
+in {
   systemd.services.custom-dyndns = {
     description = "Custom Cloudflare Dynamic DNS Updater";
     # Removed preStart command
