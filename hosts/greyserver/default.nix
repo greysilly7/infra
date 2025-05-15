@@ -52,4 +52,6 @@
     dates = "daily";
     randomizedDelaySec = "45min";
   };
+
+  virtualisation.incus.agent.enable = true;
 }

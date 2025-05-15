@@ -68,6 +68,8 @@
     };
   };
 
+  virtualisation.incus.agent.enable = true;
+
   # 8100 - Bluemap
   # 24454 - SimpleVoiceChat Proxy
   # 37429 - SimpleVoiceChat Survival
