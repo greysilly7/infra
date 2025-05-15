@@ -28,7 +28,7 @@ in {
       ${lib.getExe pkgs.gnused} -i \
         's|const revision = .*|const revision = "'"$RANDOM_VALUE"'";|' \
         ${writableDir}/gitfiles/build.ts
-      ${lib.getExe pkgs.bun} run bunbuild --cwd ${writableDir}/gitfiles
+      ${lib.getExe pkgs.bun} run bunBuild --cwd ${writableDir}/gitfiles
     '';
 
     script = "${lib.getExe pkgs.bun} ${writableDir}/gitfiles/dist/index.js";
