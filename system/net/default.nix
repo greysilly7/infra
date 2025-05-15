@@ -68,7 +68,7 @@
       fi
 
       # otherwise authenticate with tailscale
-      ${pkgs.tailscale}/bin/tailscale up -authkey file://${config.sops.secrets.ts_key.path}
+      ${pkgs.tailscale}/bin/tailscale up --auth-key=file:///run/secrets/ts_key --accept-routes --exit-node-allow-lan-access
     '';
   };
 

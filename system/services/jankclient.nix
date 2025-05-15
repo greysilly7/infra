@@ -41,6 +41,11 @@ in {
       User = "jankclient";
       Group = "jankclient";
       EnvironmentFile = config.sops.secrets.jankwrapper_secret_env.path;
+
+      RestartSec = "5s";
+      ProtectSystem = "strict";
+      PrivateTmp = true;
+      NoNewPrivileges = true;
     };
   };
 
