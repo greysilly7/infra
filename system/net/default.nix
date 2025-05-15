@@ -68,7 +68,7 @@
       fi
 
       # otherwise authenticate with tailscale
-      ${pkgs.tailscale}/bin/tailscale up --auth-key=file:///run/secrets/ts_key --accept-routes --exit-node-allow-lan-access
+      ${pkgs.tailscale}/bin/tailscale up --auth-key=file:///run/secrets/ts_key --accept-routes
     '';
   };
 
