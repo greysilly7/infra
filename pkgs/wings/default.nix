@@ -5,7 +5,7 @@
 }:
 buildGoModule rec {
   pname = "pterodactyl-wings";
-  version = "1.11.10";
+  version = "1.11.13";
 
   src = fetchFromGitHub {
     owner = "pterodactyl";
