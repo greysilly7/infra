@@ -22,7 +22,7 @@ in {
          ${pkgs.uutils-coreutils-noprefix}/bin/mkdir -p ${writableDir}/gitfiles
          ${pkgs.uutils-coreutils-noprefix}/bin/chown -R jankclient:jankclient ${writableDir}/gitfiles
          ${pkgs.uutils-coreutils-noprefix}/bin/chmod -R 755 ${writableDir}
-         ${lib.getExe pkgs.rsync} -a ${inputs.jankclient}/. ${writableDir}/gitfiles
+         ${lib.getExe pkgs.rsync} -a ${inputs.jankclient}/* ${writableDir}/gitfiles
          ${pkgs.uutils-coreutils-noprefix}/bin/cp ${writableDir}/gitfiles/src/webpage/instances.json ${writableDir}
          ${lib.getExe pkgs.bun} install --cwd ${writableDir}/gitfiles --frozen-lockfile --backend=hardlink --verbose
          RANDOM_VALUE=$(${pkgs.uutils-coreutils-noprefix}/bin/head -c 16 /dev/urandom | ${pkgs.uutils-coreutils-noprefix}/bin/base64)
