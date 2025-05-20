@@ -363,11 +363,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1747763900,
-        "narHash": "sha256-RpDoF+lW8+ajgtMtWIROx+gJ01p+LiSR49s5uZY+h04=",
+        "lastModified": 1747765239,
+        "narHash": "sha256-Sm46XNl1uBrg8pAhrqddeE3F37Tj7UbC6nSKpMZNX7o=",
         "owner": "OpenPlayVerse",
         "repo": "POCBot",
-        "rev": "ddd3c3299e44d5167b74f98c0e020b84cd1a602a",
+        "rev": "6e80a871ef8afefb5e00a7f77226e84a1a3e50fa",
         "type": "github"
       },
       "original": {
