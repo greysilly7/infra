@@ -2,6 +2,7 @@
   nix = {
     gc.automatic = false;
     package = pkgs.lix;
+    channel.enable = false;
 
     settings = {
       flake-registry = "/etc/nix/registry.json";
