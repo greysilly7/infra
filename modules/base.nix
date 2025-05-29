@@ -54,7 +54,7 @@ in {
   };
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = [pkgs.udev];
+  programs.nix-ld.libraries = [pkgs.udev pkgs.openssl pkgs.openssl.dev];
   programs.direnv.enable = true;
 
   services.udev.enable = true;
